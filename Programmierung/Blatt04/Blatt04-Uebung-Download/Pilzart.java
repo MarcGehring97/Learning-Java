@@ -1,0 +1,4 @@
+enum Pilzart {
+    CHAMPIGNON, HALLIMASCH, PFIFFERLING, STEINPILZ;
+  }
+  
