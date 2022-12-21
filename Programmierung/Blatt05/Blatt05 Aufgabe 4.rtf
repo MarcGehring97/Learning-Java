@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red35\green255\blue6;\red0\green0\blue0;\red255\green255\blue255;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c100000\c0;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c99985\c0;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh16000\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs60 \cf0 - b1 ist ein Objekt der Klasse B\
+- Konstruktor 1 wird aufgerufen mit a = 1, b = 2, c = 3, d = 4\
+- Das Attribut \cf2 i1\cf0  wird mit dem auf Integer \'93autogeboxtem\'94 integer a, 1, versehen\
+- Das Attribut \cf2 i2\cf0  wird mit dem Wert von b, 2, versehen\
+- Die Variable \cf3 d\cf0 , 4, wird explizit in einen double \'93gecastet\'94 (wobei dies auch implizit funktioniert h\'e4tte) und das Attribut \cf2 d\cf0  nimmt diesen Wert an => Daraufhin wird das Attribut noch auf Double autogeboxt\
+- Das Attribut \cf2 f\cf0  wird mit dem implizit auf float konvertierten Wert der Variablen c, 3, versehen\
+\
+a) output: 4.0 als Double, da d ein Double mit dem Wert 4.0 ist\
+b) Der Methode f ein double- und ein long-Wert \'fcbergeben. Das entspricht den Input-Parametern keiner der drei Implementierung von f. Da ein double nicht implizit in einen integer gecastet werden kann und implizierte Konvertierung dem Autoboxing bevorzugt wird, wird die erste Implementierung von f aufgerufen, die den Integer 11 returnt.\
+// Kann sich beim Konvertieren auch die Reihenfolge der Parameter \'e4ndern?\
+c) 10d wird implizit zu 40.0 gecastet. Nun wird also der Methode f ein double- und ein integer-Wert \'fcbergeben.  Das entspricht den Input-Parametern der ersten Implementierung von f, die den Integer 11 returnt.\
+// Wenn wir hier \'9310D\'94 statt \'9310d\'94 h\'e4tten, w\'fcrde 10 dann zum double konvertiert werden?\
+d) Hier wird der Methode f ein integer- und ein long-Wert \'fcbergeben. Da ein integer nicht in einen Double und ein long nicht implizit in einen integer konvertiert werden k\'f6nnen, wird die zweite Implementierung von f aufgerufen. Hier wird das zweite Parameter von einem long zu einem float implizit konvertiert. Der integer 12 wird returnt. \
+\
+- b2  ist ein weiteres Objekt der Klasse B\
+- Bis auf den ersten Typ des ersten Parameters (ein Integer) entsprechen die Parametertypen den Parametertypen von Konstruktor 1 => Um Konstruktor 1 nutzen zu k\'f6nnen muss ein Parameter autogeboxt werden; um Konstruktor 2 nutzen zu k\'f6nnen muss C entweder von Typ double oder Double sein => Deswegen wird auch hier Konstruktor 1 bevorzugt\
+- Das Attribut \cf2 i1\cf0  wird mit dem auf Integer \'93autogeboxtem\'94 integer 1 versehen\
+- Das Attribut \cf2 i2\cf0  wird mit dem Wert von 5 versehen\
+- Die Variable d, 9, wird explizit in einen double \'93gecastet\'94 (wobei dies auch implizit funktioniert h\'e4tte)  und das Attribut \cf2 \cb4 d\cf0 \cb1  nimmt diesen Wert an => Daraufhin wird das Attribut noch auf Double autogeboxt\
+- Das Attribut \cf2 f\cf0  wird mit dem implizit auf float konvertierten Wert der Variablen c, 6, versehen\
+\
+e) output: 6.0, da f ein float mit dem Wert 6.0 ist\
+f) b1.f ist 3.0 (float) und b1.i2 ist 2 (integer). Ein float kann nicht implizit in einen integer konvertiert und nicht in einen Double autogeboxt werden. Also wird f\'fcr b2 die erste Implementierung der Methode f aufgerufen, die den Integer 11 returnt.\
+\
+- b3 ist ein weiteres Objekt der Klasse B\
+- b2.i1 ist ein Integer mit dem Wert 1, das zweite und vierte \'fcbergebene Parameter sind integers und das dritte ist ein double => Da ein double nicht in einen integer konvertiert werden kann, wird dieses mal Konstruktiv 2 aufgerufen\
+- Das Attribut \cf2 i1\cf0  wird mit dem Integer 1 versehen\
+- Das Attribut \cf2 i2\cf0  wird mit dem Wert von 14 versehen\
+- Die Variable c, 1.5, wird explizit in einen Double autogecastet und das Attribut \cf2 \cb4 d\cf0 \cb1  nimmt diesen Wert an\
+- Das Attribut \cf2 f\cf0  wird mit dem implizit auf float konvertierten Wert der Variablen d, 16, versehen\
+// Wie kann man zB bei 1.0 unterscheiden, ob es ein float oder ein double ist\
+\
+g) output: Double 1.5, da d ein Double mit dem Wert 1.5 ist\
+h) b1.i1 ist Integer 1. Keine der beiden Methoden mit der Bezeichnung g kann diesen Datentypen als Parameter annehmen. Es entsteht ein Fehler.\
+i) Float. valueOf(18) ergibt Float 18.0. Danach wird die erste Implementierung der Methode g aufgerufen und der double 7.0 wird returnt.\
+j) b2.g(19f) returnt den Float 8f, nachdem die zweite Implementierung von g aufgerufen wurde, denn der Input-float wird in einen double konvertiert (was vor Autoboxing passiert). Zusammen mit dem integer 21 kann keine der drei Methoden mit der Bezeichnung f aufgerufen werden, da ein Float nur in einen float ungeboxt werden kann. Es entsteht ein Fehler.\
+}
